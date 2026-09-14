@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    
+        <p>conheça as obras que possuimos em nosso catalogo:</p>
+
+        {% for obra in listaObras %}
+            <h5>{{ obra.name }}</h5>
+            <img src="{{obra.image.medium}}" >
+            <p>
+                Gênero(s): 
+                {% for genero in obra.genres %}
+                    {{ genero }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+            <p>Estado: {{"Finalizado" if obra.status == "Ended" else "Não finalizado"}}</p>
+            <p>Quantidade de episodios: {{obra.runtime}}</p>
+        {% endfor %}
+    
+
+{% endblock content %}
