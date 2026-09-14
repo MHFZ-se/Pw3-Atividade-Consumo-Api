@@ -23,10 +23,17 @@ def init_app(app):
     # ROTA DE LOGOUT
         return render_template('lista.html', listaObras = listaObras)
 
+    @app.route('/infos/<int:obraid>')
+    def infos(obraid):
+        urlAPI = 'https://api.tvmaze.com/shows'
+        resposta = urllib.request.urlopen(urlAPI)
+        dados = resposta.read()
 
-    @app.route('/infos')
-    def infos():
-        return render_template('informacoes.html')
+        listaObras = json.loads(dados)
+
+        for obra in listaObras:
+            if obra['id'] == obraid:
+                return render_template('informacoes.html', obra=obra)
     
 
 

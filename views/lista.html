@@ -1,20 +1,62 @@
 {% extends 'base.html' %}
+
 {% block content %}
-    
-        <p>conheça as obras que possuimos em nosso catalogo:</p>
+
+<div class="centro">
+
+    <p class="text-white">
+        Conheça as obras que possuímos em nosso catálogo:
+    </p>
+
+    <div class="row g-4">
 
         {% for obra in listaObras %}
-            <h5>{{ obra.name }}</h5>
-            <img src="{{obra.image.medium}}" >
-            <p>
-                Gênero(s): 
-                {% for genero in obra.genres %}
-                    {{ genero }}{% if not loop.last %}, {% endif %}
-                {% endfor %}
-            </p>
-            <p>Estado: {{"Finalizado" if obra.status == "Ended" else "Não finalizado"}}</p>
-            <p>Quantidade de episodios: {{obra.runtime}}</p>
+
+        <div class="col-md-4">
+
+            <div class="card h-100">
+
+                <img src="{{ obra.image.medium }}" class="card-img-top">
+
+                <div class="card-body d-flex flex-column">
+
+                    <h5 class="card-title">
+                        {{ obra.name }}
+                    </h5>
+
+                    <p class="card-text">
+                        <strong>Gênero(s):</strong>
+
+                        {% for genero in obra.genres %}
+                            {{ genero }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
+
+                    <p class="card-text">
+                        <strong>Estado:</strong>
+                        {{ "Finalizado" if obra.status == "Ended" else "Não finalizado" }}
+                    </p>
+
+                    <p class="card-text">
+                        <strong>Episódios:</strong>
+                        {{ obra.runtime }}
+                    </p>
+
+                    <a href="{{ url_for('infos', obraid=obra.id) }}"
+                       class="btn btn-primary mt-auto">
+                        Saiba mais!
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
         {% endfor %}
-    
+
+    </div>
+
+</div>
 
 {% endblock content %}
