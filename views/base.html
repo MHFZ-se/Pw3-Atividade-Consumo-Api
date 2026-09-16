@@ -18,11 +18,11 @@
 
     <!-- HEADER -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-black bg-black">
             <div class="container-fluid px-5">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home') }}">
-                    <img src="{{ url_for('static', filename='imgs/logo.png') }}" alt="Logo" width="64" class="me-3">
-                    ShowMax
+                    <img src="{{ url_for('static', filename='imgs/logo.png') }}" alt="Logo" width="80" class="me-3">
+                    <h2 style="color: rgb(228, 27, 0); font-weight: bolder;">ShowMax</h2>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                   aria-expanded="false" aria-label="Toggle navigation"
@@ -49,9 +49,10 @@
     {% endblock content %}
     </main>
 
-    <footer class="bg-dark text-center py-3">
-        <p class="text-white mb-0">
+    <footer class="bg-black text-center py-3">
+        <p class="text-gray mb-0">
             &copy; 2026 - ShowMax - Todos os direitos reservados.
         </p>
     </footer>
+    
 </body>

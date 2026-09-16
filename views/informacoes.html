@@ -1,11 +1,130 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-</head>
-<body>
-    
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="pagina-info">
+
+    <!-- TÍTULO -->
+    <h1 class="titulo-serie">
+        {{ serie.name }}
+    </h1>
+
+    <!-- BANNER -->
+    <img src="{{ serie.image.original }}"
+         alt="{{ serie.name }}"
+         class="banner-serie">
+
+
+    <!-- ÁREA DE INFORMAÇÕES -->
+    <div class="info-serie">
+
+        <h2>{{ serie.name }}</h2>
+
+        <div class="informacoes">
+
+            <!-- GÊNEROS -->
+            <div class="item-info">
+                <strong>Gêneros:</strong>
+
+                <span>
+                    {{ serie.genres | join(', ') }}
+                </span>
+            </div>
+
+
+            <!-- EPISÓDIOS -->
+            <div class="item-info">
+                <strong>Episódios:</strong>
+                <span>{{ quantidadeEpisodios }}</span>
+            </div>
+
+
+            <!-- TEMPORADAS -->
+            <div class="item-info">
+                <strong>Temporadas:</strong>
+                <span>{{ quantidadeTemporadas }}</span>
+            </div>
+
+
+            <!-- IDIOMA -->
+            <div class="item-info">
+                <strong>Idioma:</strong>
+
+                <span>
+                    {{ serie.language }}
+                </span>
+            </div>
+
+
+            <!-- NOTA -->
+            <div class="item-info">
+                <strong>Nota:</strong>
+
+                <span>
+                    {{ serie.rating.average or 'Sem nota' }}
+                </span>
+            </div>
+
+
+            <!-- DATA DE INÍCIO -->
+            <div class="item-info">
+                <strong>Data de início:</strong>
+
+                <span>
+                    {{ serie.premiered }}
+                </span>
+            </div>
+
+
+            <!-- FINALIZAÇÃO -->
+            <div class="item-info">
+
+                <strong>Finalização:</strong>
+
+                <span>
+                    {% if serie.ended %}
+                        {{ serie.ended }}
+                    {% else %}
+                        Em andamento
+                    {% endif %}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- SINOPSE -->
+        <div class="sinopse">
+
+            <h3>Sinopse</h3>
+
+            <div>
+                {{ serie.summary | safe }}
+            </div>
+
+        </div>
+
+
+        <!-- SITE OFICIAL -->
+        {% if serie.officialSite %}
+
+        <div class="site-oficial">
+
+            <a href="{{ serie.officialSite }}"
+               target="_blank"
+               class="btn btn-site">
+
+                Site oficial
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

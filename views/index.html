@@ -2,12 +2,58 @@
 {% block content %}
     
         <div class="centro">
-            <p class="texto ">ShowMax o site onde todo sempre vai atras quando quer pesquisar uma especifica, aqui seu desejo é uma ordem!</p>
-            <div class="carrocel"></div>
-            <a href="{{ url_for('lista') }}">
-                <button type="button">Conheça nosso catalogo!</button>
-            </a>
+            <h3 class="titulo-home">ShowMax o melhor catalogo de series que você ja viu!</h4>
+            <h4 class="subtitulo-home">Destaques que você vai adorar</h2>
+            <div class="carrossel-container">
+
+                <button class="carrossel-seta esquerda" id="btnAnterior">
+                    &#10094;
+                </button>
+
+                <div class="carrossel">
+                    <div class="carrossel-lista" id="carrosselLista">
+
+                        {% for obra in obrasCarrossel %}
+
+                        <a 
+                            href="{{ url_for('infos', obraid=obra.id) }}"
+                            class="obra-carrossel"
+                        >
+
+                            <img 
+                                src="{{ obra.image.medium }}"
+                                alt="{{ obra.name }}"
+                            >
+
+                            <div class="obra-info">
+
+                                <h5>{{ obra.name }}</h5>
+
+                                <p>
+                                    {{ obra.genres[0] if obra.genres else 'Sem gênero' }}
+                                </p>
+
+                            </div>
+
+                        </a>
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+                <button class="carrossel-seta direita" id="btnProximo">
+                    &#10095;
+                </button>
+
+            </div>
+            <div class="text-center mt-4">
+                <a href="{{ url_for('lista') }}" class="btn btn-dark botao-catalogo">
+                    Conheça nosso catálogo por inteiro!
+                </a>
+            </div>
         </div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
     
 
 {% endblock content %}
